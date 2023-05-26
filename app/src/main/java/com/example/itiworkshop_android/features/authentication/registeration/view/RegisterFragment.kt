@@ -14,6 +14,7 @@ import androidx.navigation.Navigation
 import com.example.itiworkshop_android.R
 import com.example.itiworkshop_android.data.IRepository
 import com.example.itiworkshop_android.data.model.User
+import com.example.itiworkshop_android.data.model.auth.RegistrationRequestBody
 import com.example.itiworkshop_android.databinding.FragmentRegisterBinding
 import com.example.itiworkshop_android.features.authentication.registeration.viewmodel.RegisterViewModel
 import com.example.itiworkshop_android.features.authentication.registeration.viewmodel.RegisterViewModelFactory
@@ -52,48 +53,52 @@ class RegisterFragment : Fragment() {
             binding.errorConfirm.isVisible = false
             if (checkUser())
 
-                saveUser()
+                saveUser(RegistrationRequestBody(
+                    binding.emailTextField.text.toString(),
+                    binding.passwordTextField.text.toString(),
+                    binding.nameTextField.text.toString()
+                ))
         }
         binding.backBtn.setOnClickListener {
             Navigation.findNavController(view).navigate(R.id.registerFragment_to_loginFragment)
         }
-//        user.name = binding.nameTextField.toString()
-//        user.email = binding.emailTextField.toString()
-//        user.password = binding.passwordTextField.toString()
+      /* user.name = binding.nameTextField.text.toString()
+        user.email = binding.emailTextField.text.toString()
+        user.password = binding.passwordTextField.text.toString()*/
 
     }
 
     fun checkUser(): Boolean {
         var isValidate = true
 
-        if (binding.nameTextField.toString().isEmpty()) {
+        if (binding.nameTextField.text.toString().isEmpty()) {
             binding.errorName.isVisible = true
             isValidate = false
         }
 
-        if (binding.emailTextField.toString().isEmpty()) {
+        if (binding.emailTextField.text.toString().isEmpty()) {
             binding.errorEmail.isVisible = true
             isValidate = false
-        } else if (!credentialsValidator.isValidEmail(binding.emailTextField.toString())) {
+        } /*else if (!credentialsValidator.isValidEmail(binding.emailTextField.toString())) {
             binding.errorEmail.text = getString(R.string.errorValidateEmail)
             binding.errorEmail.isVisible = true
             isValidate = false
-        }
+        }*/
 
-        if (binding.passwordTextField.toString().isEmpty()) {
+        if (binding.passwordTextField.text.toString().isEmpty()) {
             binding.errorPass.isVisible = true
             isValidate = false
-        } else if (!credentialsValidator.isValidPassword(binding.passwordTextField.toString())) {
+        } /*else if (!credentialsValidator.isValidPassword(binding.passwordTextField.toString())) {
             binding.errorPass.text = getString(R.string.errorValidatePass)
             binding.errorPass.isVisible = true
             isValidate = false
-        }
+        }*/
 
-        if (binding.confirmPassTextField.toString().isEmpty()) {
+        if (binding.confirmPassTextField.text.toString().isEmpty()) {
             binding.errorConfirm.isVisible = true
             isValidate = false
-        } else if (!binding.passwordTextField.toString()
-                .equals(binding.confirmPassTextField.toString())
+        } else if (!binding.passwordTextField.text.toString()
+                .equals(binding.confirmPassTextField.text.toString())
         ) {
             binding.errorConfirm.text = getString(R.string.errorConfirmPass)
             binding.errorConfirm.isVisible = true
@@ -102,5 +107,7 @@ class RegisterFragment : Fragment() {
         return isValidate
     }
 
-    fun saveUser() {}
+    fun saveUser(body: RegistrationRequestBody) {
+        registerViewModel.register(body)
+    }
 }

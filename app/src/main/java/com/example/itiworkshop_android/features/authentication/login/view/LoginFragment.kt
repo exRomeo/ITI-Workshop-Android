@@ -1,6 +1,7 @@
 package com.example.itiworkshop_android.features.authentication.login.view
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -53,9 +54,10 @@ class LoginFragment : Fragment() {
         binding.loginBtn.setOnClickListener {
             if (checkUser()) {
                 user = LoginRequestBody(
-                    binding.emailTextField.toString(),
-                    binding.passTextField.toString()
+                    binding.emailTextField.text.toString(),
+                    binding.passTextField.text.toString()
                 )
+                Log.i("Exception", "${user.email}\n${user.password}")
                 loginViewModel.checkUserAuthentication(user)
                 lifecycleScope.launch {
                     loginViewModel.userState.collect { state ->
