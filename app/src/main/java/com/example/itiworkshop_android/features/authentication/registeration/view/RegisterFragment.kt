@@ -5,56 +5,87 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
+import androidx.databinding.DataBindingUtil
 import com.example.itiworkshop_android.R
+import com.example.itiworkshop_android.data.model.User
+import com.example.itiworkshop_android.databinding.FragmentRegisterBinding
+import com.example.itiworkshop_android.utility.CredentialsValidator
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [RegisterFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class RegisterFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
+    private lateinit var binding: FragmentRegisterBinding
+    lateinit var user: User
+    lateinit var credentialsValidator: CredentialsValidator
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_register, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_register, container, false)
+        credentialsValidator = CredentialsValidator
+        return binding.root
+
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment RegisterFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            RegisterFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.registerBtn.setOnClickListener {
+            binding.errorName.isVisible = false
+            binding.errorPass.isVisible = false
+            binding.errorEmail.isVisible = false
+            binding.errorConfirm.isVisible = false
+            if (checkUser())
+
+                saveUser()
+        }
+//        user.name = binding.nameTextField.toString()
+//        user.email = binding.emailTextField.toString()
+//        user.password = binding.passwordTextField.toString()
+
     }
+
+    fun checkUser(): Boolean {
+        var isValidate = true
+
+        if (binding.nameTextField.toString().isEmpty()) {
+            binding.errorName.isVisible = true
+            isValidate = false
+        }
+
+        if (binding.emailTextField.toString().isEmpty()) {
+            binding.errorEmail.isVisible = true
+            isValidate = false
+        } else if (!credentialsValidator.isValidEmail(binding.emailTextField.toString())) {
+            binding.errorEmail.text = getString(R.string.errorValidateEmail)
+            binding.errorEmail.isVisible = true
+            isValidate = false
+        }
+
+        if (binding.passwordTextField.toString().isEmpty()) {
+            binding.errorPass.isVisible = true
+            isValidate = false
+        } else if (!credentialsValidator.isValidPassword(binding.passwordTextField.toString())) {
+            binding.errorPass.text = getString(R.string.errorValidatePass)
+            binding.errorPass.isVisible = true
+            isValidate = false
+        }
+
+        if (binding.confirmPassTextField.toString().isEmpty()) {
+            binding.errorConfirm.isVisible = true
+            isValidate = false
+        } else if (!binding.passwordTextField.toString()
+                .equals(binding.confirmPassTextField.toString())
+        ) {
+            binding.errorConfirm.text = getString(R.string.errorConfirmPass)
+            binding.errorConfirm.isVisible = true
+            isValidate = false
+        }
+        return isValidate
+    }
+
+    fun saveUser() {}
 }
