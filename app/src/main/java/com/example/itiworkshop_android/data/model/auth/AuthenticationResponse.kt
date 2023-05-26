@@ -3,14 +3,14 @@ package com.example.itiworkshop_android.data.model.auth
 sealed class AuthenticationResponse{
 
     class LoginResponseBody(
-        val idToken: String?= null,
-        val email: String?=null,
-        val displayName: String?=null
+        val idToken: String?,
+        val email: String?,
+        val displayName: String?
     ) : AuthenticationResponse()
 
     class Error(
-        var code: Int = 200,
-        var message: String = "Success"
+        val code: Int = 200,
+        val message: String = "Success"
     ) : AuthenticationResponse()
 
 }
