@@ -7,15 +7,25 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
+import com.example.itiworkshop_android.NewsApplication
 import com.example.itiworkshop_android.R
+import com.example.itiworkshop_android.data.IRepository
 import com.example.itiworkshop_android.data.model.User
 import com.example.itiworkshop_android.databinding.FragmentRegisterBinding
+import com.example.itiworkshop_android.features.authentication.registeration.viewmodel.RegisterViewModel
+import com.example.itiworkshop_android.features.authentication.registeration.viewmodel.RegisterViewModelFactory
 import com.example.itiworkshop_android.utility.CredentialsValidator
 
 class RegisterFragment : Fragment() {
     private lateinit var binding: FragmentRegisterBinding
     lateinit var user: User
     lateinit var credentialsValidator: CredentialsValidator
+    private val registerViewModel: RegisterViewModel by lazy{
+        val repo: IRepository = (context?.applicationContext as NewsApplication).repository
+        val factory = RegisterViewModelFactory(repo)
+        ViewModelProvider(this,factory)[RegisterViewModel::class.java]
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

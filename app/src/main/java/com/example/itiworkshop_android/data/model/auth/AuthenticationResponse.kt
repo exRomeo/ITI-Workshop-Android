@@ -2,6 +2,7 @@ package com.example.itiworkshop_android.data.model.auth
 
 sealed class AuthenticationResponse{
 
+    class Loading() : AuthenticationResponse()
     class LoginResponseBody(
         val idToken: String?,
         val email: String?,
