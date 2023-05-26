@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.Navigation
 import com.example.itiworkshop_android.R
 import com.example.itiworkshop_android.data.model.User
 import com.example.itiworkshop_android.databinding.FragmentRegisterBinding
@@ -41,6 +42,9 @@ class RegisterFragment : Fragment() {
             if (checkUser())
 
                 saveUser()
+        }
+        binding.backBtn.setOnClickListener {
+            Navigation.findNavController(view).navigate(R.id.registerFragment_to_loginFragment)
         }
 //        user.name = binding.nameTextField.toString()
 //        user.email = binding.emailTextField.toString()
