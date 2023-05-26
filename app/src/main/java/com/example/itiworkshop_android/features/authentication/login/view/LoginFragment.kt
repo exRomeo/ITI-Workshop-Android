@@ -9,14 +9,18 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import com.example.itiworkshop_android.NewsApplication
 import com.example.itiworkshop_android.R
 import com.example.itiworkshop_android.data.model.User
+import com.example.itiworkshop_android.data.model.auth.AuthenticationResponse
 import com.example.itiworkshop_android.data.model.auth.LoginRequestBody
 import com.example.itiworkshop_android.databinding.FragmentLoginBinding
 import com.example.itiworkshop_android.features.authentication.login.viewmodel.LoginViewModel
 import com.example.itiworkshop_android.features.authentication.login.viewmodel.LoginViewModelFactory
+import kotlinx.coroutines.launch
 
 class LoginFragment : Fragment() {
 
@@ -35,7 +39,8 @@ class LoginFragment : Fragment() {
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_login, container, false)
 
-//        loginViewModelFactory = LoginViewModelFactory()
+        loginViewModelFactory =
+            LoginViewModelFactory((context?.applicationContext as NewsApplication).repository)
         loginViewModel =
             ViewModelProvider(this, loginViewModelFactory).get(LoginViewModel::class.java)
 
@@ -52,11 +57,31 @@ class LoginFragment : Fragment() {
                     binding.passTextField.toString()
                 )
                 loginViewModel.checkUserAuthentication(user)
+                lifecycleScope.launch {
+                    loginViewModel.userState.collect { state ->
+                        when (state) {
+                            is AuthenticationResponse.LoginResponseBody -> {
+                                Navigation.findNavController(view)
+                                    .navigate(R.id.action_loginFragment_to_homeFragment)
+                            }
+                            is AuthenticationResponse.Loading -> {
+                                println("LOADING !! ")
+                            }
+                            is AuthenticationResponse.Error -> {
+                                println("ERROR !!")
+                            }
+
+                        }
+
+                    }
+                }
+
             }
         }
         binding.signupBtn.setOnClickListener {
             Navigation.findNavController(view).navigate(R.id.loginFragment_to_registerFragment)
         }
+
     }
 
     fun checkUser(): Boolean {

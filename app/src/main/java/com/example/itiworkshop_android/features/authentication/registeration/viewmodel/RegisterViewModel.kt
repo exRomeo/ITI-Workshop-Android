@@ -2,12 +2,14 @@ package com.example.itiworkshop_android.features.authentication.registeration.vi
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
 import com.example.itiworkshop_android.data.IRepository
 import com.example.itiworkshop_android.data.model.auth.AuthenticationResponse
 import com.example.itiworkshop_android.data.model.auth.RegistrationRequestBody
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.launch
 
 class RegisterViewModel(
     val authenticationRepository: IRepository
@@ -19,7 +21,9 @@ class RegisterViewModel(
     val stateFlow: StateFlow<AuthenticationResponse> = _mutableStateFlow.asStateFlow()
 
     fun register(registerationRequestBody: RegistrationRequestBody){
-        val authenticationResponse = authenticationRepository.register(registerationRequestBody)
-        _mutableStateFlow.value = authenticationResponse
+        viewModelScope.launch {
+            val authenticationResponse = authenticationRepository.register(registerationRequestBody)
+            _mutableStateFlow.value = authenticationResponse
+        }
     }
 }
