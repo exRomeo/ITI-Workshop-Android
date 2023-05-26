@@ -2,6 +2,7 @@ package com.example.itiworkshop_android.features.authentication
 
 import android.content.Context
 import android.content.SharedPreferences
+import com.example.itiworkshop_android.data.model.auth.AuthenticationResponse
 
 object SharedPrefsUtil {
     private const val USER_DATA = "userData"
@@ -10,7 +11,7 @@ object SharedPrefsUtil {
     private const val DISPLAY_NAME = "displayName"
     lateinit var sharedPreferences: SharedPreferences
 
-    fun writeUserData(userData: LoginResponseBody) {
+    fun writeUserData(userData: AuthenticationResponse.LoginResponseBody) {
         if (::sharedPreferences.isInitialized) {
             val editor = sharedPreferences.edit()
             editor.putString(ID_TOKEN, userData.idToken)
@@ -20,9 +21,9 @@ object SharedPrefsUtil {
         }
     }
 
-    fun readUserData(): LoginResponseBody? {
+    fun readUserData(): AuthenticationResponse.LoginResponseBody? {
         if (::sharedPreferences.isInitialized)
-            return LoginResponseBody(
+            return AuthenticationResponse.LoginResponseBody(
                 idToken = sharedPreferences.getString(ID_TOKEN, ""),
                 email = sharedPreferences.getString(EMAIL, ""),
                 displayName = sharedPreferences.getString(DISPLAY_NAME, "")
