@@ -1,26 +1,29 @@
 package com.example.itiworkshop_android.features.authentication.login.view
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import com.example.itiworkshop_android.R
 import com.example.itiworkshop_android.data.model.User
+import com.example.itiworkshop_android.data.model.auth.LoginRequestBody
 import com.example.itiworkshop_android.databinding.FragmentLoginBinding
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
+import com.example.itiworkshop_android.features.authentication.login.viewmodel.LoginViewModel
+import com.example.itiworkshop_android.features.authentication.login.viewmodel.LoginViewModelFactory
 
 class LoginFragment : Fragment() {
 
-    lateinit var binding : FragmentLoginBinding
-    lateinit var user: User
+    lateinit var binding: FragmentLoginBinding
+    lateinit var user: LoginRequestBody
+    lateinit var loginViewModel: LoginViewModel
+    lateinit var loginViewModelFactory: LoginViewModelFactory
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -30,7 +33,12 @@ class LoginFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_login, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_login, container, false)
+
+//        loginViewModelFactory = LoginViewModelFactory()
+        loginViewModel =
+            ViewModelProvider(this, loginViewModelFactory).get(LoginViewModel::class.java)
+
         return binding.root
 
     }
@@ -38,21 +46,33 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.loginBtn.setOnClickListener {
-            binding.errorMsgEmail.isVisible = false
-            binding.errorPassword.isVisible = false
-            checkUser()
+            if (checkUser()) {
+                user = LoginRequestBody(
+                    binding.emailTextField.toString(),
+                    binding.passTextField.toString()
+                )
+                loginViewModel.checkUserAuthentication(user)
+            }
+        }
+        binding.signupBtn.setOnClickListener {
+            Navigation.findNavController(view).navigate(R.id.loginFragment_to_registerFragment)
         }
     }
-    fun checkUser(){
-        if(binding.emailTextField.toString().isEmpty() || binding.passTextField.toString().isEmpty()) {
-            if (binding.emailTextField.toString().isEmpty())
-                binding.errorMsgEmail.isVisible = true
-            if (binding.passTextField.toString().isEmpty())
-                binding.errorPassword.isVisible = true
+
+    fun checkUser(): Boolean {
+        binding.errorMsgEmail.isVisible = false
+        binding.errorPassword.isVisible = false
+        var isValidate = true
+        if (binding.emailTextField.toString().isEmpty()) {
+            binding.errorMsgEmail.isVisible = true
+            isValidate = false
         }
-      else{
-          //Check Email, password
+        if (binding.passTextField.toString().isEmpty()) {
+            binding.errorPassword.isVisible = true
+            isValidate = false
         }
+
+        return isValidate
 
     }
 }
