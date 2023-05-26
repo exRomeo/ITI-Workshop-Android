@@ -15,11 +15,11 @@
         <activity
             android:name=".features.home.HomeActivity"
             android:exported="false" />
+<!--        <activity-->
+<!--            android:name=".features.authentication.AuthActivity"-->
+<!--            android:exported="false" />-->
         <activity
             android:name=".features.authentication.AuthActivity"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

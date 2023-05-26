@@ -5,17 +5,7 @@ import com.example.itiworkshop_android.utility.constant.Constant.Companion.PASSW
 import com.example.itiworkshop_android.utility.constant.Constant.Companion.emailRegex
 import kotlin.text.Regex
 
-class CredentialsValidator private constructor(){
-    companion object{
-        private var credentialsValidator: CredentialsValidator? = null
-
-        fun getInstance(): CredentialsValidator {
-            return credentialsValidator ?: CredentialsValidator()
-
-        }
-    }
-
-
+object CredentialsValidator{
     fun isValidEmail(email: String): Boolean {
         return emailRegex.matches(email)
     }
@@ -23,6 +13,4 @@ class CredentialsValidator private constructor(){
     fun isValidPassword(password: String): Boolean {
         return PASSWORD_PATTERN.matches(password)
     }
-
-
 }
