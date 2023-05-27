@@ -14,6 +14,7 @@ import androidx.navigation.Navigation
 import com.example.itiworkshop_android.R
 import com.example.itiworkshop_android.data.IRepository
 import com.example.itiworkshop_android.data.model.User
+import com.example.itiworkshop_android.data.model.auth.RegistrationRequestBody
 import com.example.itiworkshop_android.databinding.FragmentRegisterBinding
 import com.example.itiworkshop_android.features.authentication.registeration.viewmodel.RegisterViewModel
 import com.example.itiworkshop_android.features.authentication.registeration.viewmodel.RegisterViewModelFactory
@@ -50,11 +51,13 @@ class RegisterFragment : Fragment() {
             binding.errorPass.isVisible = false
             binding.errorEmail.isVisible = false
             binding.errorConfirm.isVisible = false
-            if (checkDataEntered())
-                saveUser()
-            else{
-                print("ERROR !")
-            }
+            if (checkUser())
+
+                saveUser(RegistrationRequestBody(
+                    binding.emailTextField.text.toString(),
+                    binding.passwordTextField.text.toString(),
+                    binding.nameTextField.text.toString()
+                ))
         }
         binding.backBtn.setOnClickListener {
             Navigation.findNavController(view).navigate(R.id.registerFragment_to_loginFragment)
@@ -65,7 +68,7 @@ class RegisterFragment : Fragment() {
 
     }
 
-    private fun checkDataEntered(): Boolean {
+    fun checkUser(): Boolean {
         var isValidate = true
 
         if (binding.nameTextField.text.toString().isEmpty()) {
@@ -104,5 +107,7 @@ class RegisterFragment : Fragment() {
         return isValidate
     }
 
-    fun saveUser() {}
+    fun saveUser(body: RegistrationRequestBody) {
+        registerViewModel.register(body)
+    }
 }
