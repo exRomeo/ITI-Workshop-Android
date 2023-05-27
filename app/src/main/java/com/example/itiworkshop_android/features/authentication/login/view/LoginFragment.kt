@@ -1,5 +1,6 @@
 package com.example.itiworkshop_android.features.authentication.login.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -8,19 +9,17 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.example.itiworkshop_android.NewsApplication
 import com.example.itiworkshop_android.R
-import com.example.itiworkshop_android.data.model.User
 import com.example.itiworkshop_android.data.model.auth.AuthenticationResponse
 import com.example.itiworkshop_android.data.model.auth.LoginRequestBody
 import com.example.itiworkshop_android.databinding.FragmentLoginBinding
 import com.example.itiworkshop_android.features.authentication.login.viewmodel.LoginViewModel
 import com.example.itiworkshop_android.features.authentication.login.viewmodel.LoginViewModelFactory
+import com.example.itiworkshop_android.features.home.HomeActivity
 import kotlinx.coroutines.launch
 
 class LoginFragment : Fragment() {
@@ -63,8 +62,11 @@ class LoginFragment : Fragment() {
                     loginViewModel.userState.collect { state ->
                         when (state) {
                             is AuthenticationResponse.LoginResponseBody -> {
-                                Navigation.findNavController(view)
-                                    .navigate(R.id.action_loginFragment_to_homeFragment)
+//                                Navigation.findNavController(view)
+//                                    .navigate(R.id.action_loginFragment_to_homeFragment)
+                                val intent = Intent(activity , HomeActivity::class.java)
+                                startActivity(intent)
+                                activity?.finish()
                             }
                             is AuthenticationResponse.Loading -> {
                                 println("LOADING !! ")
