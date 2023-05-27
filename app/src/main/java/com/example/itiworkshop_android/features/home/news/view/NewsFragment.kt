@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
+
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -26,6 +27,7 @@ import kotlinx.coroutines.launch
 class NewsFragment : Fragment() {
     private lateinit var binding: FragmentNewsBinding
     private lateinit var shimmerFrameLayout: ShimmerFrameLayout
+
     private val repository: IRepository by lazy {
         (requireContext().applicationContext as NewsApplication).repository
     }
@@ -47,7 +49,6 @@ class NewsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         binding.adapter = ArticlesAdapter("🤍") {
             viewModel.addToFavorites(it)
         }
@@ -86,6 +87,7 @@ class NewsFragment : Fragment() {
         shimmerFrameLayout.visibility = View.GONE
         binding.articlesTitle.visibility = View.VISIBLE
         binding.articlesList.visibility = View.VISIBLE
+
         binding.adapter!!.submitList(articles)
     }
 

@@ -54,11 +54,11 @@ class Repository(/*private val localDataSource: ILocalSource,*/
 
     override fun getAllLocalArticles(): Flow<List<Article>> = localDataSource.getAllLocalArticles()
 
-    override fun insertArticle(article: Article) = localDataSource.insertArticle(article)
+    override suspend fun insertArticle(article: Article) = localDataSource.insertArticle(article)
 
     override suspend fun insertArticles(list: List<Article>) = localDataSource.insertArticles(list)
 
-    override fun deleteArticle(article: Article) = localDataSource.deleteArticle(article)
+    override suspend fun deleteArticle(article: Article) = localDataSource.deleteArticle(article)
 
-    override fun deleteArticles(list: List<Article>) = localDataSource.deleteArticles(list)
+    override suspend fun deleteArticles(list: List<Article>) = localDataSource.deleteArticles(list)
 }
