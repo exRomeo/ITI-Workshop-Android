@@ -14,13 +14,12 @@ class LocalDataSource(
     override fun getAllLocalArticles(): Flow<List<Article>> = articleDao.getAllLocalArticles()
 
     override fun clearAllLocalArticles() = articleDao.clearAllLocalArticles()
+    override suspend fun insertArticle(article: Article) =  articleDao.insertArticle(article)
 
-    override fun insertArticle(article: Article) = articleDao.insertArticle(article)
+    override suspend fun insertArticles(list: List<Article>) = articleDao.insertArticles(list)
 
-    override fun insertArticles(list: List<Article>) = articleDao.insertArticles(list)
+    override suspend fun deleteArticle(article: Article) = articleDao.deleteArticle(article)
 
-    override fun deleteArticle(article: Article) = articleDao.deleteArticle(article)
-
-    override fun deleteArticles(list: List<Article>) = articleDao.deleteArticles(list)
+    override suspend fun deleteArticles(list: List<Article>) = articleDao.deleteArticles(list)
 
 }

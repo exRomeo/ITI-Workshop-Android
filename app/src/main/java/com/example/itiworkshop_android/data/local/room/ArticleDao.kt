@@ -6,6 +6,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.TypeConverters
+import androidx.room.Upsert
 import com.example.itiworkshop_android.data.model.Article
 import kotlinx.coroutines.flow.Flow
 
@@ -20,19 +21,19 @@ interface ArticleDao {
     fun clearAllLocalArticles()
 
     @TypeConverters(EntityConverter::class)
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun insertArticle(article: Article)
+//    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Upsert
+    suspend fun insertArticle(article: Article)
 
     @TypeConverters(EntityConverter::class)
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun insertArticles(list: List<Article>)
+    suspend fun insertArticles(list: List<Article>)
 
     @TypeConverters(EntityConverter::class)
     @Delete
-    fun deleteArticle(article: Article)
+    suspend fun deleteArticle(article: Article)
 
     @TypeConverters(EntityConverter::class)
     @Delete
-    fun deleteArticles(list: List<Article>)
-
+    suspend fun deleteArticles(list: List<Article>)
 }

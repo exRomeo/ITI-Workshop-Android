@@ -22,11 +22,11 @@ interface IRepository {
 
     fun getAllLocalArticles() : Flow<List<Article>>
 
-    fun insertArticle(article: Article)
+    suspend fun insertArticle(article: Article)
 
-    fun insertArticles(list: List<Article>)
+    suspend fun insertArticles(list: List<Article>)
 
-    fun deleteArticle(article: Article)
+    suspend fun deleteArticle(article: Article)
 
-    fun deleteArticles(list: List<Article>)
+    suspend fun deleteArticles(list: List<Article>)
 }

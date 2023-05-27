@@ -1,5 +1,6 @@
 package com.example.itiworkshop_android.features.home.news.view
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -28,6 +29,7 @@ class ArticlesAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = getItem(position)
+        Log.i("TAG", "onBindViewHolder: ${item.content}")
         Glide.with(holder.binding.root).load(item.urlToImage)
             .placeholder(R.drawable.img_placeholder).into(holder.binding.articleImage)
         holder.binding.articleTitle.text = item.title
@@ -43,7 +45,7 @@ class ArticlesAdapter(
 
 class ArticlesDiffUtil : DiffUtil.ItemCallback<Article>() {
     override fun areItemsTheSame(oldItem: Article, newItem: Article): Boolean =
-        oldItem.articleId == newItem.articleId
+        oldItem.url == newItem.url
 
 
     override fun areContentsTheSame(oldItem: Article, newItem: Article): Boolean =
