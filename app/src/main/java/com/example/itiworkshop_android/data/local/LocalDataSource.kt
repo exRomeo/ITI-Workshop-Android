@@ -18,8 +18,8 @@ class LocalDataSource(
 
     override suspend fun insertArticles(list: List<Article>) = articleDao.insertArticles(list)
 
+    override suspend fun insertArticles(list: List<Article>) = articleDao.insertArticles(list)
     override suspend fun deleteArticle(article: Article) = articleDao.deleteArticle(article)
-
     override suspend fun deleteArticles(list: List<Article>) = articleDao.deleteArticles(list)
 
 }
