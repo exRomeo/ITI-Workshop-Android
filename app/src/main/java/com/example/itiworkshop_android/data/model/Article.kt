@@ -3,8 +3,10 @@ package com.example.itiworkshop_android.data.model
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.io.Serializable
 
 @Entity(tableName = "article")
+
 data class Article(
 
     val title: String,
@@ -17,8 +19,7 @@ data class Article(
     val content: String,
     @ColumnInfo(typeAffinity = ColumnInfo.BLOB)
     val imageAsByteArray: ByteArray
-) {
-
+) : Serializable{
     @PrimaryKey
     var articleId: String = content.hashCode().toString()
         set(value) {
