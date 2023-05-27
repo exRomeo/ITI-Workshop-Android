@@ -16,6 +16,7 @@ import com.example.itiworkshop_android.R
 import com.example.itiworkshop_android.data.model.auth.AuthenticationResponse
 import com.example.itiworkshop_android.data.model.auth.LoginRequestBody
 import com.example.itiworkshop_android.databinding.FragmentLoginBinding
+import com.example.itiworkshop_android.features.authentication.AuthActivity
 import com.example.itiworkshop_android.features.authentication.login.viewmodel.LoginViewModel
 import com.example.itiworkshop_android.features.authentication.login.viewmodel.LoginViewModelFactory
 import com.example.itiworkshop_android.features.home.HomeActivity
@@ -52,7 +53,7 @@ class LoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.loginBtn.setOnClickListener {
             if (checkDataIsEntered()) {
-                checkAuthentication()
+                checkAuthentication(view)
                 binding.errorMsgEmail.isVisible = false
                 binding.errorPassword.isVisible = false
             }
@@ -63,12 +64,6 @@ class LoginFragment : Fragment() {
         lifecycleScope.launch(Dispatchers.Main) {
             loginViewModel.userState.collect { state ->
                 when (state) {
-                    is AuthenticationResponse.LoginResponseBody -> {
-                        print("Success")
-                        val intent = Intent(activity, HomeActivity::class.java)
-                        startActivity(intent)
-                    }
-
                     is AuthenticationResponse.Loading -> {
                         println("LOADING !! ")
                     }
@@ -78,7 +73,13 @@ class LoginFragment : Fragment() {
                         binding.errorPassword.text = getString(R.string.incorrectEmailOrPassword)
                         binding.errorPassword.isVisible = true
                     }
-
+                    else-> {
+                        print("Success")
+                        val intent = Intent(activity, HomeActivity::class.java)
+                        startActivity(intent)
+                        activity?.finish()
+//                        Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_homeFragment)
+                    }
                 }
 
             }
@@ -102,10 +103,10 @@ class LoginFragment : Fragment() {
 
     }
 
-    private fun checkAuthentication() {
+    private fun checkAuthentication(view : View) {
         user = LoginRequestBody(
-            binding.emailTextField.toString(),
-            binding.passTextField.toString()
+            binding.emailTextField.text.toString(),
+            binding.passTextField.text.toString()
         )
         loginViewModel.checkUserAuthentication(user)
 
