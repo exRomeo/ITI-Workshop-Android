@@ -35,6 +35,7 @@ class DetailsFragment : Fragment() {
         initUiData()
     }
     private fun initUiData(){
+
         val article = arguments?.get(Constant.ARTICLE_SAFE_ARGS_KEY) as Article
       //  val bitmap = CredentialsValidator.getBitmapFromByteArray(article.imageAsByteArray)
         //binding.ivArticleImage.setImageBitmap(CredentialsValidator.getBitmapFromByteArray(article.imageAsByteArray))
