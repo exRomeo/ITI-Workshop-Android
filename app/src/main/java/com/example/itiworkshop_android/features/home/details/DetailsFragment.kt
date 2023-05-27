@@ -36,7 +36,7 @@ class DetailsFragment : Fragment() {
     }
     private fun initUiData(){
         val article = arguments?.get(Constant.ARTICLE_SAFE_ARGS_KEY) as Article
-        val bitmap = CredentialsValidator.getBitmapFromByteArray(article.imageAsByteArray)
+      //  val bitmap = CredentialsValidator.getBitmapFromByteArray(article.imageAsByteArray)
         //binding.ivArticleImage.setImageBitmap(CredentialsValidator.getBitmapFromByteArray(article.imageAsByteArray))
         binding.tvArticleAuthor.text = article.author
         binding.tvArticleleDate.text = article.publishedAt

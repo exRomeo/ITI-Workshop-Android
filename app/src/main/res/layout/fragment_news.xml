@@ -46,8 +46,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/articles_title"
-            tools:listitem="@layout/news_cell"
-            android:adapter="@{adapter}"/>
+            tools:listitem="@layout/news_cell" />
 
         <TextView
             android:id="@+id/articles_title"
