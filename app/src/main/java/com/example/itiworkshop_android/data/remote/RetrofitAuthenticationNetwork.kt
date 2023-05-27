@@ -1,8 +1,11 @@
 package com.example.itiworkshop_android.data.remote
 
+import com.example.itiworkshop_android.NewsApplication
 import com.example.itiworkshop_android.data.model.auth.AuthenticationResponse
 import com.example.itiworkshop_android.data.model.auth.LoginRequestBody
 import com.example.itiworkshop_android.data.model.auth.RegistrationRequestBody
+import com.example.itiworkshop_android.data.remote.NewsNetwork.HttpClient
+import com.example.itiworkshop_android.data.remote.NewsNetwork.HttpClient.okHttpClient
 import com.example.itiworkshop_android.data.remote.NewsNetwork.NewsApiService
 import retrofit2.HttpException
 import retrofit2.Retrofit
@@ -34,6 +37,8 @@ object RetrofitHelper {
                 .Builder()
                 .baseUrl(url)
                 .addConverterFactory(GsonConverterFactory.create())
+//                .client(HttpClient.setUpOKHttp(NewsApplication))
+//                .client(okHttpClient)
                 .build()
         return retrofitInstance
     }

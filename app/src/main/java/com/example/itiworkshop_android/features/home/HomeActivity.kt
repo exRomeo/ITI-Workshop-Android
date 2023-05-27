@@ -14,7 +14,7 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
         val repository = (applicationContext?.applicationContext as NewsApplication).repository
-        /*lifecycleScope.launch {
+        lifecycleScope.launch {
             val response = repository.getAllNews()
             when (response) {
                 is NewsApiState.Success -> {
@@ -25,7 +25,7 @@ class HomeActivity : AppCompatActivity() {
                     Log.i("TAG", "onCreate: error $response")
                 }
             }
-        }*/
+        }
 
     }
 }
