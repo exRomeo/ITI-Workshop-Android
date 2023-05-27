@@ -17,22 +17,22 @@ interface ArticleDao {
     fun getAllLocalArticles() : Flow<List<Article>>
 
     @Query("DELETE FROM article")
-    fun clearAllLocalArticles()
+    suspend fun clearAllLocalArticles()
 
     @TypeConverters(EntityConverter::class)
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun insertArticle(article: Article)
+    suspend fun insertArticle(article: Article)
 
     @TypeConverters(EntityConverter::class)
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun insertArticles(list: List<Article>)
+    suspend fun insertArticles(list: List<Article>)
 
     @TypeConverters(EntityConverter::class)
     @Delete
-    fun deleteArticle(article: Article)
+    suspend fun deleteArticle(article: Article)
 
     @TypeConverters(EntityConverter::class)
     @Delete
-    fun deleteArticles(list: List<Article>)
+    suspend fun deleteArticles(list: List<Article>)
 
 }

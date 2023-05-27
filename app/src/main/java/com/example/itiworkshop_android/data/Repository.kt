@@ -1,5 +1,6 @@
 package com.example.itiworkshop_android.data
 
+import android.util.Log
 import com.example.itiworkshop_android.data.local.ILocalSource
 import com.example.itiworkshop_android.data.local.LocalDataSource
 import com.example.itiworkshop_android.data.model.Article
@@ -9,7 +10,10 @@ import com.example.itiworkshop_android.data.model.auth.RegistrationRequestBody
 import com.example.itiworkshop_android.data.remote.IRemoteSource
 import com.example.itiworkshop_android.features.authentication.SharedPrefsUtil
 import com.example.itiworkshop_android.utility.NewsApiState
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.launch
+import okhttp3.Dispatcher
 
 class Repository(/*private val localDataSource: ILocalSource,*/
                  private val remoteDataSource: IRemoteSource,
@@ -49,16 +53,19 @@ class Repository(/*private val localDataSource: ILocalSource,*/
 
     override fun clearUserData() {
         sharedPrefsUtil.clearUserData()
-        localDataSource.clearAllLocalArticles()
+        GlobalScope.launch{
+            localDataSource.clearAllLocalArticles()
+        }
+        //localDataSource.clearAllLocalArticles()
     }
 
     override fun getAllLocalArticles(): Flow<List<Article>> = localDataSource.getAllLocalArticles()
 
-    override fun insertArticle(article: Article) = localDataSource.insertArticle(article)
+    override suspend fun insertArticle(article: Article) = localDataSource.insertArticle(article)
 
-    override fun insertArticles(list: List<Article>) = localDataSource.insertArticles(list)
+    override suspend fun insertArticles(list: List<Article>) = localDataSource.insertArticles(list)
 
-    override fun deleteArticle(article: Article) = localDataSource.deleteArticle(article)
+    override suspend fun deleteArticle(article: Article) = localDataSource.deleteArticle(article)
 
-    override fun deleteArticles(list: List<Article>) = localDataSource.deleteArticles(list)
+    override suspend fun deleteArticles(list: List<Article>) = localDataSource.deleteArticles(list)
 }
