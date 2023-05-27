@@ -21,7 +21,8 @@ class NewsApplication : Application() {
             remoteDataSource = RemoteSource(
                 RetrofitHelper.getRetrofitAuthenticationService(BASE_URL_AUTH) ,
                 RetrofitHelper.getRetrofitNewsService(BASE_URL_NEWS)
-            ), SharedPrefsUtil
+            ), SharedPrefsUtil,
+            localDataSource = LocalDataSource(ArticleDatabase.getInstance(applicationContext))
         )
 
     }

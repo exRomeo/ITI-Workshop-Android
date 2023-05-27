@@ -11,7 +11,8 @@ import com.example.itiworkshop_android.features.authentication.SharedPrefsUtil
 import com.example.itiworkshop_android.utility.NewsApiState
 import kotlinx.coroutines.flow.Flow
 
-class Repository(/*private val localDataSource: ILocalSource,*/ private val remoteDataSource: IRemoteSource,
+class Repository(/*private val localDataSource: ILocalSource,*/
+                 private val remoteDataSource: IRemoteSource,
                  private val sharedPrefsUtil: SharedPrefsUtil,
                  private val localDataSource: ILocalSource
 ) : IRepository {
