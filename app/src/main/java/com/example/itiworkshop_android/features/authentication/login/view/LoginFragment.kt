@@ -63,8 +63,8 @@ class LoginFragment : Fragment() {
                     loginViewModel.userState.collect { state ->
                         when (state) {
                             is AuthenticationResponse.LoginResponseBody -> {
-                                Navigation.findNavController(view)
-                                    .navigate(R.id.action_loginFragment_to_homeFragment)
+//                                Navigation.findNavController(view)
+//                                    .navigate(R.id.action_loginFragment_to_homeFragment)
                             }
                             is AuthenticationResponse.Loading -> {
                                 println("LOADING !! ")
