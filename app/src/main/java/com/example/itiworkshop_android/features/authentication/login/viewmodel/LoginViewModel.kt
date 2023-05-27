@@ -17,6 +17,12 @@ class LoginViewModel(private val repository: IRepository) : ViewModel() {
     val userState :StateFlow<AuthenticationResponse> = _userState
 
     fun checkUserAuthentication(user: LoginRequestBody) {
+        val response = AuthenticationResponse.LoginResponseBody(
+            "",
+            user.email,
+            ""
+        )
+        repository.saveUserData(response)
         viewModelScope.launch(Dispatchers.IO) {
             val response = repository.login(user)
             _userState.value = response
