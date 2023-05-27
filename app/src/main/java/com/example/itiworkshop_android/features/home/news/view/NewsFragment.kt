@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -52,6 +53,21 @@ class NewsFragment : Fragment() {
                 updateUI(it)
             }
         }
+
+
+        binding.searchBar.addTextChangedListener {
+            val list = binding.adapter?.currentList?.filter { item ->
+                item.title!!.contains(
+                    it.toString(),
+                    true
+                )
+            }
+            binding.adapter?.submitList(list)
+            if(it.toString().isEmpty()){
+                viewModel.getArticles()
+            }
+        }
+
 
     }
 

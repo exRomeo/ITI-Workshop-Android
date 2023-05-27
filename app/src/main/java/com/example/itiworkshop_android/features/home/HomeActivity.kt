@@ -1,5 +1,6 @@
 package com.example.itiworkshop_android.features.home
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
@@ -8,15 +9,21 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.ui.setupWithNavController
+import com.example.itiworkshop_android.NewsApplication
 import com.example.itiworkshop_android.R
 import com.example.itiworkshop_android.databinding.ActivityHomeBinding
+import com.example.itiworkshop_android.features.authentication.AuthActivity
 import com.google.android.material.navigation.NavigationView
+
 
 class HomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHomeBinding
     private lateinit var navController: NavController
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var navView: NavigationView
+    private val repository by lazy {
+        (this.applicationContext as NewsApplication).repository
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_home)
@@ -27,6 +34,14 @@ class HomeActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
         binding.drawerButton.setOnClickListener{
             drawerLayout.openDrawer(GravityCompat.START)
+
+        }
+
+        navView.menu.findItem(R.id.logOut).setOnMenuItemClickListener {
+            repository.clearUserData()
+            startActivity(Intent(this, AuthActivity::class.java))
+            finish()
+            true
         }
 
     }

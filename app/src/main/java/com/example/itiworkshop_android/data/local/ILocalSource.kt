@@ -7,7 +7,7 @@ interface ILocalSource {
 
     fun getAllLocalArticles() : Flow<List<Article>>
 
-    fun clearAllLocalArticles()
+    suspend fun clearAllLocalArticles()
 
     suspend fun insertArticle(article: Article)
 
