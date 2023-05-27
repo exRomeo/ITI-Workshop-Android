@@ -1,14 +1,18 @@
 package com.example.itiworkshop_android.data
 
 import com.example.itiworkshop_android.data.local.ILocalSource
+import com.example.itiworkshop_android.data.local.LocalDataSource
+import com.example.itiworkshop_android.data.model.Article
 import com.example.itiworkshop_android.data.model.auth.AuthenticationResponse
 import com.example.itiworkshop_android.data.model.auth.LoginRequestBody
 import com.example.itiworkshop_android.data.model.auth.RegistrationRequestBody
 import com.example.itiworkshop_android.data.remote.IRemoteSource
 import com.example.itiworkshop_android.features.authentication.SharedPrefsUtil
+import kotlinx.coroutines.flow.Flow
 
 class Repository(/*private val localDataSource: ILocalSource,*/ private val remoteDataSource: IRemoteSource,
-                 private var sharedPrefsUtil: SharedPrefsUtil
+                 private val sharedPrefsUtil: SharedPrefsUtil,
+                 private val localDataSource: ILocalSource
 ) : IRepository {
 
 
@@ -39,5 +43,16 @@ class Repository(/*private val localDataSource: ILocalSource,*/ private val remo
 
     override fun clearUserData() {
         sharedPrefsUtil.clearUserData()
+        localDataSource.clearAllLocalArticles()
     }
+
+    override fun getAllLocalArticles(): Flow<List<Article>> = localDataSource.getAllLocalArticles()
+
+    override fun insertArticle(article: Article) = localDataSource.insertArticle(article)
+
+    override fun insertArticles(list: List<Article>) = localDataSource.insertArticles(list)
+
+    override fun deleteArticle(article: Article) = localDataSource.deleteArticle(article)
+
+    override fun deleteArticles(list: List<Article>) = localDataSource.deleteArticles(list)
 }

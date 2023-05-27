@@ -21,6 +21,7 @@ interface RetrofitAuthenticationService{
     @POST("./accounts:signInWithPassword?key=$API_KEY")
     @Throws(HttpException::class)
     suspend fun login(@Body body: LoginRequestBody) : AuthenticationResponse.LoginResponseBody
+
 }
 
 
