@@ -1,6 +1,5 @@
 package com.example.itiworkshop_android.data.remote
 
-import com.example.itiworkshop_android.data.model.NewsApiResponse
 import com.example.itiworkshop_android.data.model.auth.AuthenticationResponse
 import com.example.itiworkshop_android.data.model.auth.LoginRequestBody
 import com.example.itiworkshop_android.data.model.auth.RegistrationRequestBody
@@ -26,7 +25,7 @@ interface RetrofitAuthenticationService {
 }
 
 
-object RetrofitAuthenticationHelper {
+object RetrofitHelper {
     private lateinit var retrofitInstance : Retrofit
     private fun getRetrofitInstance(url: String): Retrofit {
          retrofitInstance =

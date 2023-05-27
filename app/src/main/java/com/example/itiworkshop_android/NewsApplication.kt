@@ -4,7 +4,7 @@ import android.app.Application
 import com.example.itiworkshop_android.data.IRepository
 import com.example.itiworkshop_android.data.Repository
 import com.example.itiworkshop_android.data.remote.RemoteSource
-import com.example.itiworkshop_android.data.remote.RetrofitAuthenticationHelper
+import com.example.itiworkshop_android.data.remote.RetrofitHelper
 import com.example.itiworkshop_android.features.authentication.SharedPrefsUtil
 
 private const val BASE_URL_AUTH = "https://identitytoolkit.googleapis.com/v1/"
@@ -21,8 +21,8 @@ class NewsApplication : Application() {
 //            )
         repository = Repository(
             remoteDataSource = RemoteSource(
-                RetrofitAuthenticationHelper.getRetrofitAuthenticationService(BASE_URL_AUTH) ,
-                RetrofitAuthenticationHelper.getRetrofitNewsService(BASE_URL_NEWS)
+                RetrofitHelper.getRetrofitAuthenticationService(BASE_URL_AUTH) ,
+                RetrofitHelper.getRetrofitNewsService(BASE_URL_NEWS)
             ), SharedPrefsUtil
         )
     }
