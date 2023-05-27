@@ -31,7 +31,6 @@ class LoginFragment : Fragment() {
     lateinit var loginViewModelFactory: LoginViewModelFactory
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
 
     override fun onCreateView(
@@ -57,7 +56,7 @@ class LoginFragment : Fragment() {
                     binding.emailTextField.text.toString(),
                     binding.passTextField.text.toString()
                 )
-                Log.i("Exception", "${user.email}\n${user.password}")
+
                 loginViewModel.checkUserAuthentication(user)
                 lifecycleScope.launch {
                     loginViewModel.userState.collect { state ->
