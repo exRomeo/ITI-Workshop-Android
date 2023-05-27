@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="adapter"
+            type="com.example.itiworkshop_android.features.home.news.view.ArticlesAdapter" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -22,7 +24,9 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/favorites_title"
-            tools:listitem="@layout/news_cell" />
+            tools:listitem="@layout/news_cell"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:adapter="@{adapter}" />
 
         <TextView
             android:id="@+id/favorites_title"

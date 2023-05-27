@@ -1,7 +1,7 @@
 package com.example.itiworkshop_android.features.home
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
@@ -10,12 +10,6 @@ import androidx.navigation.Navigation
 import androidx.navigation.ui.setupWithNavController
 import com.example.itiworkshop_android.databinding.ActivityHomeBinding
 import com.google.android.material.navigation.NavigationView
-import android.util.Log
-import androidx.lifecycle.lifecycleScope
-import com.example.itiworkshop_android.NewsApplication
-import com.example.itiworkshop_android.R
-import com.example.itiworkshop_android.utility.NewsApiState
-import kotlinx.coroutines.launch
 
 class HomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHomeBinding
