@@ -55,7 +55,6 @@ class LoginFragment : Fragment() {
                 checkAuthentication(view)
                 binding.errorMsgEmail.isVisible = false
                 binding.errorPassword.isVisible = false
-
             }
         }
         binding.signupBtn.setOnClickListener {
