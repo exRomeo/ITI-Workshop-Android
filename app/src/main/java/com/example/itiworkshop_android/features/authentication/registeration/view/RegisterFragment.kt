@@ -1,5 +1,6 @@
 package com.example.itiworkshop_android.features.authentication.registeration.view
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -18,6 +19,7 @@ import com.example.itiworkshop_android.data.model.auth.RegistrationRequestBody
 import com.example.itiworkshop_android.databinding.FragmentRegisterBinding
 import com.example.itiworkshop_android.features.authentication.registeration.viewmodel.RegisterViewModel
 import com.example.itiworkshop_android.features.authentication.registeration.viewmodel.RegisterViewModelFactory
+import com.example.itiworkshop_android.features.home.HomeActivity
 import com.example.itiworkshop_android.utility.CredentialsValidator
 
 class RegisterFragment : Fragment() {
@@ -52,20 +54,16 @@ class RegisterFragment : Fragment() {
             binding.errorEmail.isVisible = false
             binding.errorConfirm.isVisible = false
             if (checkUser())
-
                 saveUser(RegistrationRequestBody(
                     binding.emailTextField.text.toString(),
                     binding.passwordTextField.text.toString(),
                     binding.nameTextField.text.toString()
                 ))
+            navigateToHomeActivity()
         }
         binding.backBtn.setOnClickListener {
             Navigation.findNavController(view).navigate(R.id.registerFragment_to_loginFragment)
         }
-      /* user.name = binding.nameTextField.text.toString()
-        user.email = binding.emailTextField.text.toString()
-        user.password = binding.passwordTextField.text.toString()*/
-
     }
 
     fun checkUser(): Boolean {
@@ -79,20 +77,20 @@ class RegisterFragment : Fragment() {
         if (binding.emailTextField.text.toString().isEmpty()) {
             binding.errorEmail.isVisible = true
             isValidate = false
-        } /*else if (!credentialsValidator.isValidEmail(binding.emailTextField.toString())) {
+        } else if (!credentialsValidator.isValidEmail(binding.emailTextField.text.toString())) {
             binding.errorEmail.text = getString(R.string.errorValidateEmail)
             binding.errorEmail.isVisible = true
             isValidate = false
-        }*/
+        }
 
         if (binding.passwordTextField.text.toString().isEmpty()) {
             binding.errorPass.isVisible = true
             isValidate = false
-        } /*else if (!credentialsValidator.isValidPassword(binding.passwordTextField.toString())) {
+        } else if (!credentialsValidator.isValidPassword(binding.passwordTextField.text.toString())) {
             binding.errorPass.text = getString(R.string.errorValidatePass)
             binding.errorPass.isVisible = true
             isValidate = false
-        }*/
+        }
 
         if (binding.confirmPassTextField.text.toString().isEmpty()) {
             binding.errorConfirm.isVisible = true
@@ -109,5 +107,9 @@ class RegisterFragment : Fragment() {
 
     fun saveUser(body: RegistrationRequestBody) {
         registerViewModel.register(body)
+    }
+
+    private fun navigateToHomeActivity(){
+        context?.startActivity(Intent(activity,HomeActivity::class.java))
     }
 }

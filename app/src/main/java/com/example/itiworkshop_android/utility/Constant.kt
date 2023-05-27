@@ -1,4 +1,4 @@
-package com.example.itiworkshop_android.utility.constant
+package com.example.itiworkshop_android.utility
 import kotlin.text.Regex
 class Constant {
 companion object{

@@ -19,5 +19,6 @@
     <string name="errorValidateEmail">Email is invalid</string>
     <string name="errorValidatePass">Password is invalid</string>
     <string name="errorConfrimPassIsNotMatch">Please check confirmation password</string>
+    <string name="incorrectEmailOrPassword">Incorrect Email or Password</string>
 
 </resources>
