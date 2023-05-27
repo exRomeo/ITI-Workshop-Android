@@ -4,8 +4,10 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.Ignore
 import androidx.room.PrimaryKey
+import java.io.Serializable
 
 @Entity(tableName = "article")
+
 data class Article(
 
     val title: String?,
@@ -14,9 +16,9 @@ data class Article(
     val description: String?,
     @PrimaryKey
     val url: String,
-    val urlToImage: String?,
-    val publishedAt: String?,
-    val content: String?
+    val urlToImage: String? =null,
+    val publishedAt: String? =null,
+    val content: String?=null
 //    @ColumnInfo(typeAffinity = ColumnInfo.BLOB)
 //    val imageAsByteArray: ByteArray
 ) {
@@ -26,6 +28,15 @@ data class Article(
 //        set(value) {
 //            field = value
 //        }
+
+    @ColumnInfo(typeAffinity = ColumnInfo.BLOB)
+    val imageAsByteArray: ByteArray
+) : Serializable{
+    @PrimaryKey
+    var articleId: String = content.hashCode().toString()
+        set(value) {
+            field = value
+        }
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

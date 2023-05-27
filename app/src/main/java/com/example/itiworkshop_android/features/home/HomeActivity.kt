@@ -8,7 +8,6 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.ui.setupWithNavController
-import com.example.itiworkshop_android.R
 import com.example.itiworkshop_android.databinding.ActivityHomeBinding
 import com.google.android.material.navigation.NavigationView
 

@@ -15,4 +15,12 @@
         android:name="com.example.itiworkshop_android.features.home.favorite.view.FavoriteFragment"
         android:label="fragment_favorite"
         tools:layout="@layout/fragment_favorite" />
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="com.example.itiworkshop_android.features.home.details.DetailsFragment"
+        android:label="DetailsFragment" >
+        <argument
+            android:name="article"
+            app:argType="com.example.itiworkshop_android.data.model.Article" />
+    </fragment>
 </navigation>
