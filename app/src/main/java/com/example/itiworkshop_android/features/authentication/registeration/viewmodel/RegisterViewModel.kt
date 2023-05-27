@@ -21,6 +21,12 @@ class RegisterViewModel(
     val stateFlow: StateFlow<AuthenticationResponse> = _mutableStateFlow.asStateFlow()
 
     fun register(registerationRequestBody: RegistrationRequestBody){
+        val response = AuthenticationResponse.LoginResponseBody(
+            "",
+            registerationRequestBody.email,
+            registerationRequestBody.displayName
+        )
+        authenticationRepository.saveUserData(response)
        viewModelScope.launch(Dispatchers.IO) {
            val authenticationResponse = authenticationRepository.register(registerationRequestBody)
            _mutableStateFlow.value = authenticationResponse

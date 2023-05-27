@@ -77,7 +77,6 @@ class LoginFragment : Fragment() {
                         val intent = Intent(activity, HomeActivity::class.java)
                         startActivity(intent)
                         activity?.finish()
-//                        Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_homeFragment)
                     }
                 }
 
