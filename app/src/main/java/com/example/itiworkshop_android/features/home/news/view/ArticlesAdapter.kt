@@ -45,7 +45,7 @@ class ArticlesAdapter(
 
 class ArticlesDiffUtil : DiffUtil.ItemCallback<Article>() {
     override fun areItemsTheSame(oldItem: Article, newItem: Article): Boolean =
-        oldItem.articleId == newItem.articleId
+        oldItem.url == newItem.url
 
 
     override fun areContentsTheSame(oldItem: Article, newItem: Article): Boolean =

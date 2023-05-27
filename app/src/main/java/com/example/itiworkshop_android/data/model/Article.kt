@@ -2,28 +2,30 @@ package com.example.itiworkshop_android.data.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.Ignore
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "article")
 data class Article(
 
-    val title: String,
+    val title: String?,
     val source: Source?,
-    val author: String,
-    val description: String,
+    val author: String?,
+    val description: String?,
+    @PrimaryKey
     val url: String,
-    val urlToImage: String,
-    val publishedAt: String,
-    val content: String,
-    @ColumnInfo(typeAffinity = ColumnInfo.BLOB)
-    val imageAsByteArray: ByteArray
+    val urlToImage: String?,
+    val publishedAt: String?,
+    val content: String?
+//    @ColumnInfo(typeAffinity = ColumnInfo.BLOB)
+//    val imageAsByteArray: ByteArray
 ) {
 
-    @PrimaryKey
-    var articleId: String = content.hashCode().toString()
-        set(value) {
-            field = value
-        }
+//    @PrimaryKey
+//    var articleId: String = content.hashCode().toString()
+//        set(value) {
+//            field = value
+//        }
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -39,8 +41,8 @@ data class Article(
         if (urlToImage != other.urlToImage) return false
         if (publishedAt != other.publishedAt) return false
         if (content != other.content) return false
-        if (!imageAsByteArray.contentEquals(other.imageAsByteArray)) return false
-        if (articleId != other.articleId) return false
+//        if (!imageAsByteArray.contentEquals(other.imageAsByteArray)) return false
+//        if (articleId != other.articleId) return false
 
         return true
     }
@@ -54,8 +56,8 @@ data class Article(
         result = 31 * result + urlToImage.hashCode()
         result = 31 * result + publishedAt.hashCode()
         result = 31 * result + content.hashCode()
-        result = 31 * result + imageAsByteArray.contentHashCode()
-        result = 31 * result + articleId.hashCode()
+//        result = 31 * result + imageAsByteArray.contentHashCode()
+//        result = 31 * result + articleId.hashCode()
         return result
     }
 

@@ -29,7 +29,9 @@ class FavoriteViewModel(val repository: IRepository) : ViewModel() {
     }
 
     fun removeArticleFromFavorites(article: Article) {
-        repository.deleteArticle(article)
+        viewModelScope.launch {
+            repository.deleteArticle(article)
+        }
     }
 }
 
