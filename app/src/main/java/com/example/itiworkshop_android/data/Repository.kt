@@ -56,7 +56,7 @@ class Repository(/*private val localDataSource: ILocalSource,*/
 
     override fun insertArticle(article: Article) = localDataSource.insertArticle(article)
 
-    override fun insertArticles(list: List<Article>) = localDataSource.insertArticles(list)
+    override suspend fun insertArticles(list: List<Article>) = localDataSource.insertArticles(list)
 
     override fun deleteArticle(article: Article) = localDataSource.deleteArticle(article)
 

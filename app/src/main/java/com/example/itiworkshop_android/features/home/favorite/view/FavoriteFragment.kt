@@ -30,29 +30,23 @@ class FavoriteFragment : Fragment() {
     }
     private lateinit var binding: FragmentFavoriteBinding
 
-    private lateinit var adapter: ArticlesAdapter
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_favorite, container, false)
-        return inflater.inflate(R.layout.fragment_favorite, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        adapter = ArticlesAdapter("❤") {
+        binding.adapter = ArticlesAdapter("❤") {
             viewModel.removeArticleFromFavorites(it)
         }
 
         lifecycleScope.launchWhenStarted {
             viewModel.favoriteList.collect {
-                adapter.submitList(it)
+                binding.adapter!!.submitList(it)
             }
         }
     }

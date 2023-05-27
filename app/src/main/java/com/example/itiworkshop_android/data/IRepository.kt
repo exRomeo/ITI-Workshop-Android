@@ -24,7 +24,7 @@ interface IRepository {
 
     fun insertArticle(article: Article)
 
-    fun insertArticles(list: List<Article>)
+    suspend fun insertArticles(list: List<Article>)
 
     fun deleteArticle(article: Article)
 

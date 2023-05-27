@@ -25,7 +25,7 @@ interface ArticleDao {
 
     @TypeConverters(EntityConverter::class)
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun insertArticles(list: List<Article>)
+    suspend fun insertArticles(list: List<Article>)
 
     @TypeConverters(EntityConverter::class)
     @Delete
