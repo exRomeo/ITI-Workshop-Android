@@ -50,9 +50,11 @@ class RegisterFragment : Fragment() {
             binding.errorPass.isVisible = false
             binding.errorEmail.isVisible = false
             binding.errorConfirm.isVisible = false
-            if (checkUser())
-
+            if (checkDataEntered())
                 saveUser()
+            else{
+                print("ERROR !")
+            }
         }
         binding.backBtn.setOnClickListener {
             Navigation.findNavController(view).navigate(R.id.registerFragment_to_loginFragment)
@@ -63,37 +65,37 @@ class RegisterFragment : Fragment() {
 
     }
 
-    fun checkUser(): Boolean {
+    private fun checkDataEntered(): Boolean {
         var isValidate = true
 
-        if (binding.nameTextField.toString().isEmpty()) {
+        if (binding.nameTextField.text.toString().isEmpty()) {
             binding.errorName.isVisible = true
             isValidate = false
         }
 
-        if (binding.emailTextField.toString().isEmpty()) {
+        if (binding.emailTextField.text.toString().isEmpty()) {
             binding.errorEmail.isVisible = true
             isValidate = false
-        } else if (!credentialsValidator.isValidEmail(binding.emailTextField.toString())) {
+        } else if (!credentialsValidator.isValidEmail(binding.emailTextField.text.toString())) {
             binding.errorEmail.text = getString(R.string.errorValidateEmail)
             binding.errorEmail.isVisible = true
             isValidate = false
         }
 
-        if (binding.passwordTextField.toString().isEmpty()) {
+        if (binding.passwordTextField.text.toString().isEmpty()) {
             binding.errorPass.isVisible = true
             isValidate = false
-        } else if (!credentialsValidator.isValidPassword(binding.passwordTextField.toString())) {
+        } else if (!credentialsValidator.isValidPassword(binding.passwordTextField.text.toString())) {
             binding.errorPass.text = getString(R.string.errorValidatePass)
             binding.errorPass.isVisible = true
             isValidate = false
         }
 
-        if (binding.confirmPassTextField.toString().isEmpty()) {
+        if (binding.confirmPassTextField.text.toString().isEmpty()) {
             binding.errorConfirm.isVisible = true
             isValidate = false
-        } else if (!binding.passwordTextField.toString()
-                .equals(binding.confirmPassTextField.toString())
+        } else if (!binding.passwordTextField.text.toString()
+                .equals(binding.confirmPassTextField.text.toString())
         ) {
             binding.errorConfirm.text = getString(R.string.errorConfirmPass)
             binding.errorConfirm.isVisible = true
