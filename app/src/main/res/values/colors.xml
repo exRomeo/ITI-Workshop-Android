@@ -4,9 +4,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="mainColor">#bfe4c3</color>
     <color name="errorColor">#FF1909</color>
-<<<<<<< HEAD
     <color name="shimmer_color">#D1DDDD</color>
-=======
     <color name="grey">#9f9f9f</color>
->>>>>>> Develpment
 </resources>
