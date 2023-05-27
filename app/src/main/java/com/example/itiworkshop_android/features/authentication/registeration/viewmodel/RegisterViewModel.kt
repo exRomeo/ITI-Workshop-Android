@@ -1,7 +1,6 @@
 package com.example.itiworkshop_android.features.authentication.registeration.viewmodel
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.example.itiworkshop_android.data.IRepository
 import com.example.itiworkshop_android.data.model.auth.AuthenticationResponse

@@ -11,6 +11,12 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.itiworkshop_android.R
 import com.example.itiworkshop_android.databinding.ActivityHomeBinding
 import com.google.android.material.navigation.NavigationView
+import android.util.Log
+import androidx.lifecycle.lifecycleScope
+import com.example.itiworkshop_android.NewsApplication
+import com.example.itiworkshop_android.R
+import com.example.itiworkshop_android.utility.NewsApiState
+import kotlinx.coroutines.launch
 
 class HomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHomeBinding
@@ -28,6 +34,7 @@ class HomeActivity : AppCompatActivity() {
         binding.drawerButton.setOnClickListener{
             drawerLayout.openDrawer(GravityCompat.START)
         }
+
     }
 
 }
