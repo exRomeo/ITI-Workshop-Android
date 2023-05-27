@@ -15,19 +15,38 @@
         android:layout_height="match_parent"
         tools:context=".features.home.news.view.NewsFragment">
 
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/articles_title"
+            android:id="@+id/shimmer">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <include layout="@layout/news_cell_placeholder"/>
+                <include layout="@layout/news_cell_placeholder"/>
+                <include layout="@layout/news_cell_placeholder"/>
+                <include layout="@layout/news_cell_placeholder"/>
+            </LinearLayout>
 
+        </com.facebook.shimmer.ShimmerFrameLayout>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/articles_list"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="4dp"
+            android:adapter="@{adapter}"
+            android:visibility="gone"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/articles_title"
-            tools:listitem="@layout/news_cell"
-            android:adapter="@{adapter}"/>
+            tools:listitem="@layout/news_cell" />
 
         <TextView
             android:id="@+id/articles_title"
@@ -38,6 +57,7 @@
             android:layout_marginEnd="8dp"
             android:gravity="center"
             android:text="Latest News"
+            android:visibility="gone"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
