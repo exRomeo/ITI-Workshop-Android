@@ -77,20 +77,20 @@ class RegisterFragment : Fragment() {
         if (binding.emailTextField.text.toString().isEmpty()) {
             binding.errorEmail.isVisible = true
             isValidate = false
-        } /*else if (!credentialsValidator.isValidEmail(binding.emailTextField.toString())) {
+        } else if (!credentialsValidator.isValidEmail(binding.emailTextField.text.toString())) {
             binding.errorEmail.text = getString(R.string.errorValidateEmail)
             binding.errorEmail.isVisible = true
             isValidate = false
-        }*/
+        }
 
         if (binding.passwordTextField.text.toString().isEmpty()) {
             binding.errorPass.isVisible = true
             isValidate = false
-        } /*else if (!credentialsValidator.isValidPassword(binding.passwordTextField.toString())) {
+        } else if (!credentialsValidator.isValidPassword(binding.passwordTextField.text.toString())) {
             binding.errorPass.text = getString(R.string.errorValidatePass)
             binding.errorPass.isVisible = true
             isValidate = false
-        }*/
+        }
 
         if (binding.confirmPassTextField.text.toString().isEmpty()) {
             binding.errorConfirm.isVisible = true

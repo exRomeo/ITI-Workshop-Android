@@ -11,6 +11,7 @@ interface IRepository {
 
     suspend fun login(body: LoginRequestBody) : AuthenticationResponse
 
+//    suspend fun getNews()
     fun saveUserData(data: AuthenticationResponse.LoginResponseBody)
 
     fun readUserData(): AuthenticationResponse
