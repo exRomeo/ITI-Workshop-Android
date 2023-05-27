@@ -21,23 +21,14 @@ data class Article(
     val content: String?=null
 //    @ColumnInfo(typeAffinity = ColumnInfo.BLOB)
 //    val imageAsByteArray: ByteArray
-) {
-
-//    @PrimaryKey
-//    var articleId: String = content.hashCode().toString()
-//        set(value) {
-//            field = value
-//        }
-
-    @ColumnInfo(typeAffinity = ColumnInfo.BLOB)
-    val imageAsByteArray: ByteArray
 ) : Serializable{
-    @PrimaryKey
+
+  /*  @PrimaryKey
     var articleId: String = content.hashCode().toString()
         set(value) {
             field = value
         }
-
+*/
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
