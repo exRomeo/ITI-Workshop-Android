@@ -51,13 +51,10 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.loginBtn.setOnClickListener {
-
-
             if (checkDataIsEntered()) {
                 checkAuthentication(view)
                 binding.errorMsgEmail.isVisible = false
                 binding.errorPassword.isVisible = false
-
             }
         }
         binding.signupBtn.setOnClickListener {

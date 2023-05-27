@@ -8,9 +8,11 @@ import com.example.itiworkshop_android.data.model.auth.LoginRequestBody
 import com.example.itiworkshop_android.data.model.auth.RegistrationRequestBody
 import com.example.itiworkshop_android.data.remote.IRemoteSource
 import com.example.itiworkshop_android.features.authentication.SharedPrefsUtil
+import com.example.itiworkshop_android.utility.NewsApiState
 import kotlinx.coroutines.flow.Flow
 
-class Repository(/*private val localDataSource: ILocalSource,*/ private val remoteDataSource: IRemoteSource,
+class Repository(/*private val localDataSource: ILocalSource,*/
+                 private val remoteDataSource: IRemoteSource,
                  private val sharedPrefsUtil: SharedPrefsUtil,
                  private val localDataSource: ILocalSource
 ) : IRepository {
@@ -22,6 +24,10 @@ class Repository(/*private val localDataSource: ILocalSource,*/ private val remo
 
     override suspend fun login(body: LoginRequestBody): AuthenticationResponse {
         return remoteDataSource.login(body)
+    }
+
+    override suspend fun getAllNews(): NewsApiState {
+        return remoteDataSource.getAllNews()
     }
 
 

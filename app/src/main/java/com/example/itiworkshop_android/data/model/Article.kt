@@ -12,18 +12,17 @@ data class Article(
     val title: String,
     val source: Source?,
     val author: String,
-    val description:String,
+    val description: String,
     val url: String,
-    val urlToImage:String,
+    val urlToImage: String,
     val publishedAt: String,
     val content: String,
     @ColumnInfo(typeAffinity = ColumnInfo.BLOB)
     val imageAsByteArray: ByteArray
 ) : Serializable{
-
     @PrimaryKey
-        var articleId: String = content.hashCode().toString()
-        set(value){
+    var articleId: String = content.hashCode().toString()
+        set(value) {
             field = value
         }
 
