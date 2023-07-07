@@ -2,4 +2,113 @@
     <string name="app_name">ITI Workshop - Android</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="register">Register</string>
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="confirmPassword">Confirm password</string>
+    <string name="signup">Sign Up</string>
+    <string name="orContinueWith">Or continue with</string>
+    <string name="errorName">Please enter name</string>
+    <string name="welcomeBack">Welcome \\nback</string>
+    <string name="welcome">Welcome</string>
+    <string name="signIn">Sign In</string>
+    <string name="errorEmail">Please enter your email</string>
+    <string name="errorPassword">Please enter your password</string>
+    <string name="errorConfirmPass">Please check password</string>
+    <string name="errorValidateEmail">Email is invalid</string>
+    <string name="errorValidatePass">Password is invalid</string>
+    <string name="errorConfrimPassIsNotMatch">Please check confirmation password</string>
+    <string name="incorrectEmailOrPassword">Incorrect Email or Password</string>
+
+
+    <string name="articleContent">
+        content content content content content content content content content content content content
+        content content content content content content content content content content content content
+        content content content content content content content content content content content content
+        content content content content content content content content content content content content
+        content content content content content content content content content content content content
+        content content content content content content content content content content content content
+        content content content content content content content content content content content content
+        content content content content content content content content content content content content
+        content content content content content content content content content content content content
+        content content content content content content content content content content content content
+        content content content content content content content content content content content content
+        content content content content content content content content content content content content
+        content content content content content content content content content content content content
+        content content content content content content content content content content content content content content content content content content content content content content content content
+        content content content content content content content content content content content content
+        content content content content content content content content content content content content
+        content content content content content content content content content content content content
+        content content content content content content content content content content content content
+        content content content content content content content content content content content content
+        content content content content content content content content content content content content content content content content content content content content content content content content
+        content content content content content content content content content content content content
+        content content content content content content content content content content content content
+        content content content content content content content content content content content content
+        content content content content content content content content content content content content
+        content content content content content content content content content content content content
+        content content content content content content content content content content content content
+        content content content content content content content content content content content content
+        content content content content content content content content content content content content
+        content content content content content content content content content content content content
+        content content content content content content content content content content content content
+        content content content content content content content content content content content content
+        content content content content content content content content content content content content
+        content content content content content content content content content content content content
+        content content content content content content content content content content content content
+        content content content content content content content content content content content content
+        content content content content content content content content content content content content
+        content content content content content content content content content content content content
+        content content content content content content content content content content content content
+        content content content content content content content content content content content content
+        content content content content content content content content content content content content
+        content content content content content content content content content content content content
+        content content content content content content content content content content content content
+        content content content content content content content content content content content content
+        content content content content content content content content content content content content
+        content content content content content content content content content content content content
+        content content content content content content content content content content content content
+        content content content content content content content content content content content content
+        content content content content content content content content content content content content
+        content content content content content content content content content content content content
+        content content content content content content content content content content content content
+        content content content content content content content content content content content content
+        content content content content content content content content content content content content
+        content content content content content content content content content content content content
+        content content content content content content content content content content content content
+        content content content content content content content content content content content content
+        content content content content content content content content content content content content
+        content content content content content content content content content content content content
+        content content content content content content content content content content content content
+        content content content content content content content content content content content content
+        content content content content content content content content content content content content
+        content content content content content content content content content content content content
+        content content content content content content content content content content content content
+        content content content content content content content content content content content content
+        content content content content content content content content content content content content
+        content content content content content content content content content content content content
+        content content content content content content content content content content content content
+        content content content content content content content content content content content content
+        content content content content content content content content content content content content
+        content content content content content content content content content content content content
+        content content content content content content content content content content content content
+        content content content content content content content content content content content content
+        content content content content content content content content content content content content
+        content content content content content content content content content content content content
+        content content content content content content content content content content content content
+        content content content content content content content content content content content content
+        content content content content content content content content content content content content
+        content content content content content content content content content content content content
+        content content content content content content content content content content content content
+        content content content content content content content content content content content content
+        content content content content content content content content content content content content
+        content content content content content content content content content content content content
+        content content content content content content content content content content content content
+
+
+    </string>
+
+
+
 </resources>

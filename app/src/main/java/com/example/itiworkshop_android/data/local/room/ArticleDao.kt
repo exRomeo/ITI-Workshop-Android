@@ -1,0 +1,39 @@
+package com.example.itiworkshop_android.data.local.room
+
+import androidx.room.Dao
+import androidx.room.Delete
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
+import androidx.room.TypeConverters
+import androidx.room.Upsert
+import com.example.itiworkshop_android.data.model.Article
+import kotlinx.coroutines.flow.Flow
+
+@Dao
+interface ArticleDao {
+
+    @TypeConverters(EntityConverter::class)
+    @Query("SELECT * FROM article")
+    fun getAllLocalArticles() : Flow<List<Article>>
+
+    @Query("DELETE FROM article")
+    suspend fun clearAllLocalArticles()
+
+    @TypeConverters(EntityConverter::class)
+    @Upsert
+    suspend fun insertArticle(article: Article)
+
+    @TypeConverters(EntityConverter::class)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insertArticles(list: List<Article>)
+
+    @TypeConverters(EntityConverter::class)
+    @Delete
+    suspend fun deleteArticle(article: Article)
+
+    @TypeConverters(EntityConverter::class)
+    @Delete
+    suspend fun deleteArticles(list: List<Article>)
+
+}
